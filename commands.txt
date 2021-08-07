@@ -1,0 +1,3 @@
+
+//runs the database and puts data in dbpath
+/Users/denwt/mongodb/bin/mongod.exe --dbpath=/Users/denwt/mongodb-data
