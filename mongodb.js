@@ -21,16 +21,27 @@ MongoClient.connect(connectionURL, { useNewURLParser : true }, (error, client) =
 
     const db = client.db(databaseName);
 
-    db.collection('users').updateOne({
-        _id: new ObjectId("610c3ce8e22c6edbee6bdd4f")
+    // db.collection('users').updateOne({
+    //     _id: new ObjectId("610c3ce8e22c6edbee6bdd4f")
+    // }, {
+    //     $inc: {
+    //         age: 1
+    //     }
+    // }).then((result) => {
+    //     console.log(result);
+    // }).catch((error) => {
+    //     console.log(error);
+    // })
+
+    db.collection('tasks').updateMany({
+        completed:false
     }, {
-        $set: {
-            name: 'Mike'
+        $set:{
+            completed:true
         }
     }).then((result) => {
         console.log(result);
     }).catch((error) => {
         console.log(error);
     })
-
 });
