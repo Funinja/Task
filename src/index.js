@@ -18,9 +18,9 @@ const port = process.env.PORT || 3000;
 //     }
 // });
 
-app.use((req, res, next) => {
-    res.send('503 maintenance');
-});
+// app.use((req, res, next) => {
+//     res.send('503 maintenance');
+// });
 
 app.use(express.json());
 app.use(userRouter);
