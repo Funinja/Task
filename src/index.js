@@ -10,17 +10,28 @@ require('./db/mongoose.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// app.use((req, res, next) => {
-//     if (req.method === 'GET'){
-//         res.send('GET requests are disabled');
-//     }else{
-//         next();
-//     }
-// });
+const multer = require('multer');
+const upload = multer({
+    dest: 'images',
+    limits: {
+        fileSize:1000000
+    },
+    fileFilter(req, file, cb) {
+        // cb(new Error('File must be a PDF'));
+        // cb(undefined, true);
+        // cb(undefined, false);
+        if (!file.originalname.match(/\.(doc|docx)$/)){
+            return cb(new Error('Please upload a DOC or DOCX'));
+        }
 
-// app.use((req, res, next) => {
-//     res.send('503 maintenance');
-// });
+        cb(undefined, true);
+
+    }
+})
+
+app.post('/upload', upload.single('upload'), (req, res) => {
+    res.send();
+})
 
 app.use(express.json());
 app.use(userRouter);
