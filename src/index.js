@@ -5,10 +5,12 @@ const User = require('./models/user');
 const userRouter = require('./routers/user');
 const taskRouter = require('./routers/task');
 
+
+
 require('./db/mongoose.js');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.use(express.json());
 app.use(userRouter);
